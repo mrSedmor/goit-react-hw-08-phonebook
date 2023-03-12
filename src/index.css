@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 300px;
 }
 
 code {
@@ -29,4 +30,14 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.container {
+  padding-inline: 15px;
+  max-width: 900px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 32px;
 }

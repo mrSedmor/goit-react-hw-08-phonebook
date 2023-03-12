@@ -1,0 +1,10 @@
+.form {
+  display: grid;
+  gap: 12px;
+  max-width: 450px;
+  margin-inline: auto;
+}
+.button {
+  margin-inline: auto;
+  width: 140px;
+}
