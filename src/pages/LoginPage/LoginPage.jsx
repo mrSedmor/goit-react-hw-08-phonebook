@@ -3,9 +3,11 @@ import { LoginForm } from 'modules';
 
 export default function LoginPage() {
   return (
-    <div className="container">
-      <h1 className="page-title">Login page</h1>
-      <LoginForm />
-    </div>
+    <main className="page-content">
+      <div className="container">
+        <h1 className="page-title">Login page</h1>
+        <LoginForm />
+      </div>
+    </main>
   );
 }

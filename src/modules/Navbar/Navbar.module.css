@@ -1,0 +1,38 @@
+.header {
+  background-color: #eef2ff;
+}
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  height: 64px;
+}
+
+.logo {
+  height: 44px;
+}
+
+.navItem {
+  display: inline-block;
+}
+
+.navLink {
+  padding: 8px;
+  margin-inline: 8px;
+  font-size: 1.2em;
+  font-weight: 500;
+  border: 1px solid;
+  border-color: #0000;
+  border-radius: 4px;
+  transition: border-color 300ms;
+}
+
+.navLink:global(.active) {
+  text-decoration: underline;
+}
+
+.navLink:hover,
+.navLink:focus {
+  border-color: #000;
+}

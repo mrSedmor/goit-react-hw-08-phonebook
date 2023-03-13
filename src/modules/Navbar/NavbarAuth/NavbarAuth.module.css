@@ -1,0 +1,18 @@
+.authLink {
+  padding: 6px;
+  margin-inline: 6px;
+  font-weight: 500;
+  border: 1px solid;
+  border-color: #0000;
+  border-radius: 4px;
+  transition: border-color 300ms;
+}
+
+.authLink:global(.active) {
+  text-decoration: underline;
+}
+
+.authLink:hover,
+.authLink:focus {
+  border-color: #000;
+}

@@ -5,4 +5,4 @@ export const selectAuth = state => {
   return { isLoggedIn, token };
 };
 
-export const selectUser = state => state.auth.user;
+export const selectUserName = state => state.auth.user.name;

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { PublicRoute, PrivateRoute } from './modules';
 
@@ -20,6 +20,7 @@ export default function UserRoutes() {
         <Route element={<PrivateRoute />}>
           <Route path="/contacts" element={<ContactsPage />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );

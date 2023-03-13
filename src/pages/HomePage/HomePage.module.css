@@ -1,0 +1,11 @@
+.logo {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 32px auto;
+}
+
+.text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
