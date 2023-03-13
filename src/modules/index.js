@@ -5,3 +5,7 @@ export { default as Navbar } from './Navbar';
 export { default as RegisterForm } from './RegisterFrom';
 export { default as LoginForm } from './LoginForm';
 export { default as AuthLayout } from './AuthLayout';
+export { default as ContactForm } from './ContactForm';
+export { default as ContactList } from './ContactList';
+export { default as Filter } from './Filter';
+export { default as StatusInfo } from './StatusInfo';

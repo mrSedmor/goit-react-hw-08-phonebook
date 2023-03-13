@@ -1,0 +1,47 @@
+.label {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input {
+  display: block;
+  font-size: 16px;
+  width: 100%;
+  padding: 0.3em 2.3em 0.3em 0.5em;
+}
+
+.field {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.iconButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2em;
+  /* transform: translateY(-50%); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition-property: opacity visibility;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+.input:placeholder-shown + .iconButton {
+  opacity: 0;
+  visibility: hidden;
+}

@@ -1,0 +1,11 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  transition: opacity 250ms;
+}
+
+.list.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
