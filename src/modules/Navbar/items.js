@@ -9,7 +9,7 @@ const items = [
     id: '2',
     text: 'Contacts',
     link: '/contacts',
-    private: true,
+    isPrivate: true,
   },
 ];
 
