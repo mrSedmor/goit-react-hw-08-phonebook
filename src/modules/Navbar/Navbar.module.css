@@ -1,5 +1,6 @@
 .header {
   background-color: #eef2ff;
+  padding: 10px 0;
 }
 .navBar {
   display: flex;

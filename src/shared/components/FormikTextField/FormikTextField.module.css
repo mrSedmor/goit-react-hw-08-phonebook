@@ -1,0 +1,22 @@
+.wrapper {
+  margin-bottom: 16px;
+}
+.label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.error {
+  color: #b41919;
+  font-size: 14px;
+}

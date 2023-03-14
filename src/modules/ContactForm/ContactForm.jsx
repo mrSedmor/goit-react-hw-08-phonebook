@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 
 import { toast } from 'react-toastify';
+import { Button, FormikTextField } from 'shared/components';
 import { useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { useAddContactMutation } from 'redux/contacts/contacts-api';
 import css from './contact-form.module.css';
 import schema from './validation-schema';
 import initialValues from './initial-values';
+import fields from './fields';
 
 export default function ContactForm({ className }) {
   const contacts = useSelector(selectContacts);
@@ -43,36 +45,11 @@ export default function ContactForm({ className }) {
         onSubmit={handleAddContact}
       >
         <Form className={className}>
-          <label className={css.fieldWrapper}>
-            <span className={css.label}>Name</span>
-            <Field
-              className={css.input}
-              type="text"
-              name="name"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              placeholder="Rosie Simpson"
-            />
-            <ErrorMessage name="name" component="p" className={css.error} />
-          </label>
-
-          <label className={css.fieldWrapper}>
-            <span className={css.label}>Number</span>
-            <Field
-              className={css.input}
-              type="tel"
-              name="number"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              placeholder="459-12-56"
-            />
-            <ErrorMessage name="number" component="p" className={css.error} />
-          </label>
+          <FormikTextField {...fields.name} />
+          <FormikTextField {...fields.number} />
           <div className={css.controls}>
-            <button className="btn" type="submit">
-              Add contact
-            </button>
-            <button className="btn" type="reset">
-              Reset form
-            </button>
+            <Button>Add contact</Button>
+            <Button type="reset">Reset form</Button>
           </div>
         </Form>
       </Formik>

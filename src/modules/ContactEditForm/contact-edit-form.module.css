@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 32px;
+  width: calc(100vw - 30px);
+  max-width: 560px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.heading {
+  display: block;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}

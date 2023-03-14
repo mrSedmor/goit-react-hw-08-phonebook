@@ -75,14 +75,40 @@ export const contactsApi = createApi({
     }),
 
     updateContact: build.mutation({
-      query: contact => ({
-        url: `contacts/${contact.id}`,
+      query: ({ id, name, number }) => ({
+        url: `contacts/${id}`,
         method: 'PATCH',
-        data: contact,
+        data: { name, number },
       }),
       // Список контактів буде визнано неактуальним, бо неактуальним визнано один з контактів
       invalidatesTags: (result, _, id) =>
-        result ? [{ type: 'Contacts', id }] : [],
+        result
+          ? [
+              { type: 'Contacts', id },
+              { type: 'Contacts', id: 'LIST' },
+            ]
+          : [],
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data: updatedContact } = await queryFulfilled;
+          dispatch(
+            contactsApi.util.updateQueryData(
+              'getContacts',
+              undefined,
+              contacts => {
+                const index = contacts.findIndex(
+                  contact => contact.id === updatedContact.id
+                );
+                if (index < 0) {
+                  return;
+                }
+                contacts.splice(index, 1);
+                insertIntoSortedContacts(contacts, updatedContact);
+              }
+            )
+          );
+        } catch {}
+      },
     }),
   }),
 });

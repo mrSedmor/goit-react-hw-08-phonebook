@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import css from './contact-list.module.css';
 
 export default function ContactList() {
-  const { isFetching: isLoading, error } = useGetContactsQuery(undefined, {
+  const { isLoading, error } = useGetContactsQuery(undefined, {
     refetchOnReconnect: true,
   });
 
