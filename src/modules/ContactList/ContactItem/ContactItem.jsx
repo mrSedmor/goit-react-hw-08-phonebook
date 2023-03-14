@@ -16,6 +16,9 @@ export default function ContactItem({ id, name, number }) {
   const handleDelete = useCallback(() => {
     deleteContact(id)
       .unwrap()
+      .then(() => {
+        toast.success(`Successfully deleted: ${name}`);
+      })
       .catch(() => {
         toast.error(`Failed to delete contact: ${name}`);
       });
@@ -26,7 +29,7 @@ export default function ContactItem({ id, name, number }) {
       <span className={css.content}>
         {name}: {number}
       </span>
-      <IconButton type="button" onClick={showModal}>
+      <IconButton type="button" disabled={isDeleting} onClick={showModal}>
         <FaEdit />
       </IconButton>
       <IconButton type="button" disabled={isDeleting} onClick={handleDelete}>

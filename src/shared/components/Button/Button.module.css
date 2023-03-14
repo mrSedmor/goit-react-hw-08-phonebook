@@ -11,3 +11,8 @@
 .button:focus {
   background-color: #405ecb;
 }
+
+.button:disabled {
+  background-color: #8390bf;
+  color: #d8d8d8;
+}

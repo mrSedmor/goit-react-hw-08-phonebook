@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
-
+import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Button, FormikTextField } from 'shared/components';
+import { Button, SpinnerButton, FormikTextField } from 'shared/components';
 import { useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { useUpdateContactMutation } from 'redux/contacts/contacts-api';
@@ -18,32 +18,46 @@ export default function ContactEditForm({
 }) {
   const contacts = useSelector(selectContacts);
 
-  const [updateContact] = useUpdateContactMutation();
+  const [updateContact, { isLoading: isUpdating }] = useUpdateContactMutation();
+  const [updateRequest, setUpdateRequest] = useState(null);
 
-  function handleUpdateContact(updatedContact, { resetForm }) {
-    const normalizedName = updatedContact.name.toLocaleLowerCase();
+  const handleUpdateContact = useCallback(
+    (updatedContact, { resetForm }) => {
+      const normalizedName = updatedContact.name.toLocaleLowerCase();
 
-    if (
-      contacts.find(
-        ({ id, name }) =>
-          name.toLocaleLowerCase() === normalizedName && id !== contact.id
-      )
-    ) {
-      toast.error(`${updatedContact.name} is already in contacts.`);
-      return;
+      if (
+        contacts.find(
+          ({ id, name }) =>
+            name.toLocaleLowerCase() === normalizedName && id !== contact.id
+        )
+      ) {
+        toast.error(`${updatedContact.name} is already in contacts.`);
+        return;
+      }
+
+      const request = updateContact(updatedContact);
+      setUpdateRequest(request);
+      request
+        .unwrap()
+        .then(() => {
+          toast.success('Contact has been updated');
+          resetForm(updatedContact);
+          onSuccess();
+        })
+        .catch(() => {
+          toast.error('Failed to update contact');
+        });
+    },
+    [contacts, contact, onSuccess, updateContact]
+  );
+
+  const handleCancel = useCallback(() => {
+    if (isUpdating) {
+      updateRequest?.abort();
     }
 
-    updateContact(updatedContact)
-      .unwrap()
-      .then(() => {
-        toast.success('Contact has been updated');
-        resetForm(updatedContact);
-        onSuccess();
-      })
-      .catch(() => {
-        toast.error('Failed to update contact');
-      });
-  }
+    onCancel();
+  }, [isUpdating, onCancel, updateRequest]);
 
   return (
     <div className={css.wrapper}>
@@ -57,9 +71,13 @@ export default function ContactEditForm({
           <FormikTextField autocomplete="off" {...fields.name} />
           <FormikTextField autocomplete="off" {...fields.number} />
           <div className={css.controls}>
-            <Button>Update contact</Button>
-            <Button type="reset">Revert</Button>
-            <Button type="button" onClick={onCancel} data-align-right>
+            <SpinnerButton spinner={isUpdating} disabled={isUpdating}>
+              Update contact
+            </SpinnerButton>
+            <Button type="reset" disabled={isUpdating}>
+              Revert
+            </Button>
+            <Button type="button" onClick={handleCancel} data-align-right>
               Cancel
             </Button>
           </div>

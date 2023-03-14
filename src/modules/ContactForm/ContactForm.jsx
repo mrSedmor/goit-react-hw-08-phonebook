@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 
 import { toast } from 'react-toastify';
-import { Button, FormikTextField } from 'shared/components';
+
+import { Button, SpinnerButton, FormikTextField } from 'shared/components';
 import { useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/selectors';
 import { useAddContactMutation } from 'redux/contacts/contacts-api';
@@ -14,7 +15,7 @@ import fields from './fields';
 export default function ContactForm({ className }) {
   const contacts = useSelector(selectContacts);
 
-  const [addContact] = useAddContactMutation();
+  const [addContact, { isLoading: isAdding }] = useAddContactMutation();
 
   function handleAddContact(contact, { resetForm }) {
     const normalizedName = contact.name.toLocaleLowerCase();
@@ -48,8 +49,12 @@ export default function ContactForm({ className }) {
           <FormikTextField {...fields.name} />
           <FormikTextField {...fields.number} />
           <div className={css.controls}>
-            <Button>Add contact</Button>
-            <Button type="reset">Reset form</Button>
+            <SpinnerButton spinner={isAdding} disabled={isAdding}>
+              Add contact
+            </SpinnerButton>
+            <Button disabled={isAdding} type="reset">
+              Reset form
+            </Button>
           </div>
         </Form>
       </Formik>
