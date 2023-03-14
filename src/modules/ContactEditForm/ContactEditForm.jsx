@@ -59,7 +59,7 @@ export default function ContactEditForm({
           <div className={css.controls}>
             <Button>Update contact</Button>
             <Button type="reset">Revert</Button>
-            <Button type="button" onClick={onCancel}>
+            <Button type="button" onClick={onCancel} data-align-right>
               Cancel
             </Button>
           </div>

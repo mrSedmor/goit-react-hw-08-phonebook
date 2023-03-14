@@ -8,7 +8,12 @@
 .controls {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 12px;
+}
+
+.controls > [data-align-right] {
+  margin-left: auto;
 }
 
 .heading {
