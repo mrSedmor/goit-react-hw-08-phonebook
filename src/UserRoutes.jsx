@@ -20,7 +20,7 @@ export default function UserRoutes() {
         <Route element={<PrivateRoute />}>
           <Route path="/contacts" element={<ContactsPage />} />
         </Route>
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );
