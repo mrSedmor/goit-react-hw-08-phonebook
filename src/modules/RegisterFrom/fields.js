@@ -21,7 +21,7 @@ const fields = {
     placeholder: '*******',
   },
   confirmPassword: {
-    name: 'password',
+    name: 'confirmPassword',
     type: 'password',
     required: true,
     label: 'Confirm password',

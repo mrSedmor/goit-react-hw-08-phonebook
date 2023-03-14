@@ -11,8 +11,10 @@ export default function useForm({ initialState, onSubmit }) {
   const handleSubmit = useCallback(
     event => {
       event.preventDefault();
-      onSubmit({ ...state });
-      setState({ ...initialState });
+      if (onSubmit({ ...state })) {
+        console.log('reset state');
+        setState({ ...initialState });
+      }
     },
     [state, onSubmit, initialState]
   );

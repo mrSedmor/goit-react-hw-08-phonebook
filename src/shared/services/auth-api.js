@@ -22,7 +22,7 @@ export const singup = async body => {
   } catch (error) {
     const {
       message: errorMessage,
-      response: { status, message: responseMessage, keyValue } = {},
+      response: { status, data: { message: responseMessage }, keyValue } = {},
     } = error;
     console.log('error', error);
     switch (status) {
@@ -59,7 +59,7 @@ export const login = async body => {
   } catch (error) {
     const {
       message: errorMessage,
-      response: { status, message: responseMessage } = {},
+      response: { status, data: { message: responseMessage } } = {},
     } = error;
     switch (status) {
       case 400:
@@ -92,7 +92,7 @@ export const logout = async () => {
   } catch (error) {
     const {
       message: errorMessage,
-      response: { status, message: responseMessage } = {},
+      response: { status, data: { message: responseMessage } } = {},
     } = error;
     switch (status) {
       case 401:
@@ -125,7 +125,10 @@ export const current = async token => {
   } catch (error) {
     const {
       message: errorMessage,
-      data: { message: responseMessage, status },
+      response: {
+        status,
+        data: { message: responseMessage },
+      },
     } = error;
     switch (status) {
       case 401:

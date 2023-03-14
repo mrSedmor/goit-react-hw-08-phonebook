@@ -1,4 +1,5 @@
 import { RegisterForm } from 'modules';
+
 // import css from './RegisterPage.module.css';
 
 export default function RegisterPage() {

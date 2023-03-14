@@ -16,6 +16,11 @@ const handleRejected = (state, { payload }) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    clearError: state => {
+      state.error = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(signup.pending, handlePending)
@@ -54,3 +59,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice;
+export const { clearError } = authSlice.actions;

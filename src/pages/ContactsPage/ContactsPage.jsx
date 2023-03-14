@@ -1,7 +1,5 @@
 import { Filter, ContactList, StatusInfo } from 'modules';
 import { ContactForm } from 'modules';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import css from './ContactsPage.module.css';
 
 export default function ContactsPage() {
@@ -15,11 +13,6 @@ export default function ContactsPage() {
         <Filter />
         <StatusInfo />
         <ContactList />
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          className="toast"
-        />
       </div>
     </main>
   );
