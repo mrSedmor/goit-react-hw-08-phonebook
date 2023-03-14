@@ -1,11 +1,12 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 10px 16px;
 }
 
-.userName {
+.userEmail {
   font-weight: 500;
   cursor: default;
 }

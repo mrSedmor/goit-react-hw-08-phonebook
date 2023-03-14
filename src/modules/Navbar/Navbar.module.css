@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  height: 64px;
+  min-height: 64px;
 }
 
 .logo {
@@ -19,6 +19,7 @@
 }
 
 .navLink {
+  display: inline-block;
   padding: 8px;
   margin-inline: 8px;
   font-size: 1.2em;

@@ -9,7 +9,6 @@
   bottom: 0;
   right: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -17,8 +16,9 @@
 }
 
 .modal {
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .blockScroll {
