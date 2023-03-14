@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as authApi from 'shared/services/auth-api';
+import { contactsApi } from 'redux/contacts/contacts-api';
 
 export const signup = createAsyncThunk(
   'auth/signup',
@@ -26,9 +27,14 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await authApi.logout();
+      const result = await authApi.logout();
+      setTimeout(
+        () => dispatch(contactsApi.util.invalidateTags(['Contacts'])),
+        0
+      );
+      return result;
     } catch ({ message }) {
       return rejectWithValue(message);
     }
