@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { PublicRoute, PrivateRoute } from './modules';
-
+import { PageSpinner } from 'shared/components';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -10,7 +10,7 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 
 export default function UserRoutes() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<PageSpinner text="Loading..." />}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route element={<PublicRoute />}>
